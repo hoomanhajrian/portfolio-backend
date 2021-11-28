@@ -16,21 +16,24 @@
             <h1>This is great</h1>
             <p>Welcome to templating using EJS</p>
 
-            <h2>Variable</h2>
-            <p>
-                <%= tagline %>
-            </p>
+            <h2>Data</h2>
 
             <ul>
-                <% mascots.forEach(function(mascot) { %>
-                    <li>
-                        <strong>
-                            <%= mascot.name %>
-                        </strong>
-                        representing <%= mascot.organization %>,
-                            born <%= mascot.birth_year %>
-                    </li>
-                    <% }); %>
+                <li>
+                    <strong>
+                        <%= data.user.name %>
+                    </strong>
+                </li>
+                <li>
+                    <strong>
+                        <%= data.user.email %>
+                    </strong>
+                </li>
+                <li>
+                    <strong>
+                        <%= data.user.message %>
+                    </strong>
+                </li>
             </ul>
         </div>
     </main>
