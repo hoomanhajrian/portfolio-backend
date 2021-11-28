@@ -1,9 +1,9 @@
 const express = require("express");
-const cors = require('cors')
 const app = express();
 const bodyParser = require("body-parser");
 const port = 8080;
-app.use(cors());
+
+
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -16,13 +16,22 @@ app.listen(port, () => {
     console.log(`listening to port ${port}`);
 });
 
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "hh-portfolio.com"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 app.get('/', function (req, res) {
     console.log(data);
-    res.render('pages/index', {
-        data: data
-    });
-
+    if (data === '') {
+        res.status(500).send("Data does not exist!")
+    }
+    else {
+        res.render('pages/index', {
+            data: data
+        });
+    };
 });
 
 app.post('/message', (req, res) => {
@@ -30,11 +39,3 @@ app.post('/message', (req, res) => {
     data = req.body;
     res.send("data set successfuly");
 });
-
-// index page
-
-
-// // about page
-// app.get('/about', function (req, res) {
-//     res.render('pages/about');
-// });
