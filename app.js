@@ -4,10 +4,11 @@ const bodyParser = require("body-parser");
 const port = 5000;
 const cors = require('cors');
 
-app.use(cors());
+
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
 
 
 let data = '';
